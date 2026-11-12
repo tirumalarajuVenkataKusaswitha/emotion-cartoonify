@@ -1,0 +1,16 @@
+{
+  "frontend/src/index.css": "Global styles with warm sunset color palette (oranges, corals, peaches) using OKLCH color system for both light and dark modes, plus custom font families for playful typography.",
+  "frontend/tailwind.config.js": "Extended Tailwind configuration with warm color tokens, Poppins/Inter font families, custom border radius, warm shadow effects, and custom animations for fade-in and pulse-glow effects.",
+  "frontend/src/App.tsx": "Root application component that renders the TransformationPage as the main view.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including session management, image upload, transformation requests, and result saving with proper cache invalidation.",
+  "frontend/src/hooks/useImageUpload.ts": "Custom hook managing image file selection, validation (JPEG/PNG/WebP, 10MB limit), preview generation, and conversion to ExternalBlob with upload progress tracking.",
+  "frontend/src/hooks/useTransformation.ts": "Custom hook orchestrating the complete transformation workflow including upload, emotion processing, style application, and state management with error handling.",
+  "frontend/src/components/Layout.tsx": "Main layout wrapper with header featuring app branding, background decoration, and footer with caffeine.ai attribution and UTM tracking.",
+  "frontend/src/components/ImageUpload.tsx": "Drag-and-drop image upload component with file validation, preview display, and reset functionality using warm-themed styling.",
+  "frontend/src/components/EmotionSelector.tsx": "Emotion selection component displaying five emotion options (happy, sad, surprised, angry, neutral) with icon images and single-selection radio behavior.",
+  "frontend/src/components/CartoonStyleSelector.tsx": "Cartoon style selector featuring five style options with Ghibli-style prominently displayed including example image and descriptive labels.",
+  "frontend/src/components/LoadingIndicator.tsx": "Loading state component showing animated spinner, progress messages, and upload progress bar for different transformation stages.",
+  "frontend/src/components/TransformationResults.tsx": "Results display component showing three-stage transformation (original, emotion-applied, final cartoon) in responsive grid with download button integration.",
+  "frontend/src/components/DownloadButton.tsx": "Download button component that retrieves full-quality image bytes and triggers browser download with timestamped filename.",
+  "frontend/src/pages/TransformationPage.tsx": "Main page component orchestrating the complete transformation workflow with session management, image upload, emotion/style selection, processing states, and results display."
+}

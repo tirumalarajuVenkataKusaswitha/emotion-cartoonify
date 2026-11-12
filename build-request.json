@@ -1,0 +1,197 @@
+{
+  "kind": "build_request",
+  "title": "Build emotion and cartoon style image transformation website",
+  "projectName": "Emotion Cartoonify",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create an image upload interface that accepts person photos in common formats (JPEG, PNG, WebP) with drag-and-drop support and file size validation",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can drag and drop image files onto the upload area",
+        "Users can click to browse and select image files",
+        "Supported formats are validated (JPEG, PNG, WebP)",
+        "File size limits are enforced and displayed to users",
+        "Preview of uploaded image is shown before processing"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement emotion transformation selector allowing users to choose target emotions: happy, sad, surprised, angry, neutral",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Display clear emotion options with representative icons or labels",
+        "Allow single emotion selection at a time",
+        "Visual feedback shows which emotion is currently selected",
+        "Selection persists during the transformation process"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement cartoon style selector with options including: Ghibli-style, classic cartoon, anime, comic book, and watercolor styles",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Display all available cartoon styles with visual examples or descriptions",
+        "Allow single style selection at a time",
+        "Ghibli-style option is prominently featured",
+        "Visual feedback indicates the currently selected style"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Create backend endpoint to store uploaded person images and track transformation requests with user sessions",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Endpoint accepts image uploads with metadata",
+        "Images are stored securely with unique identifiers",
+        "Transformation requests are tracked per session",
+        "Error handling for invalid uploads or storage failures"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build processing workflow that applies emotion transformation to the uploaded image based on user selection",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend receives emotion selection parameter",
+        "Image processing applies selected emotion transformation",
+        "Transformed image maintains original resolution and quality",
+        "Processing status is communicated to frontend"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Build processing workflow that applies cartoon style transformation to the emotion-adjusted image based on user selection",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend receives cartoon style selection parameter",
+        "Style transformation is applied to emotion-adjusted image",
+        "Each style produces visually distinct results",
+        "Ghibli-style transformation captures characteristic soft colors and hand-drawn aesthetics"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Display transformed images with side-by-side comparison view showing original, emotion-adjusted, and final cartoon-styled versions",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Three images displayed clearly: original, intermediate, and final",
+        "Responsive layout adapts to different screen sizes",
+        "Labels identify each stage of transformation",
+        "High-quality image rendering without compression artifacts"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Implement download functionality allowing users to save the final transformed image to their device",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Download button is clearly visible and accessible",
+        "Downloaded image maintains full quality and resolution",
+        "File is saved with descriptive naming convention",
+        "Download works across different browsers and devices"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Add loading states and progress indicators during image upload and transformation processing",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Upload progress is visually indicated",
+        "Processing stages are communicated to users",
+        "Loading animations prevent perceived delays",
+        "Users understand the current step in the workflow"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Design a visually cohesive interface with a creative artistic theme that emphasizes transformation and creativity, using warm, inviting colors and playful typography that reflects the fun, artistic nature of image manipulation",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color palette uses warm, inviting tones that avoid standard blue/purple combinations",
+        "Typography is playful yet readable, supporting the creative theme",
+        "Layout emphasizes the transformation journey from upload to final result",
+        "Visual style is consistently applied across all components and pages"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use React with TypeScript for frontend implementation",
+    "Use Motoko for backend implementation with single-actor architecture",
+    "Style frontend with Tailwind CSS",
+    "Do not modify immutable frontend paths: hooks/useInternetIdentity.ts, hooks/useInternetIdentity.tsx, hooks/useActor.ts, main.tsx, components/ui",
+    "Store generated transformation images as static assets in frontend/public/assets/generated"
+  ],
+  "nonGoals": [
+    "Real-time video emotion transformation",
+    "Batch processing of multiple images simultaneously",
+    "Social media sharing integration",
+    "User authentication or account management",
+    "Advanced editing tools beyond emotion and style transformation",
+    "Mobile app development"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Hero background with artistic paint strokes and transformation motifs in warm sunset tones (hero-background.dim_1920x1080.png)",
+      "Sample Ghibli-style transformation example showing before and after (ghibli-example.dim_800x600.png)",
+      "Emotion icon set: happy face illustration (emotion-happy.dim_64x64.png)",
+      "Emotion icon set: sad face illustration (emotion-sad.dim_64x64.png)",
+      "Emotion icon set: surprised face illustration (emotion-surprised.dim_64x64.png)",
+      "Emotion icon set: angry face illustration (emotion-angry.dim_64x64.png)",
+      "Emotion icon set: neutral face illustration (emotion-neutral.dim_64x64.png)",
+      "Upload area placeholder illustration with camera and image icons (upload-placeholder.dim_400x300.png)"
+    ],
+    "edits": []
+  }
+}

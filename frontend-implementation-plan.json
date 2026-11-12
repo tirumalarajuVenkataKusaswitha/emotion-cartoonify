@@ -1,0 +1,201 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Emotion Cartoonify Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create image upload interface with drag-and-drop support and file validation",
+      "acceptanceCriteria": [
+        "Users can drag and drop image files onto the upload area",
+        "Users can click to browse and select image files",
+        "Supported formats are validated (JPEG, PNG, WebP)",
+        "File size limits are enforced and displayed to users",
+        "Preview of uploaded image is shown before processing"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ImageUpload.tsx",
+          "operation": "create",
+          "description": "Create ImageUpload component with drag-and-drop zone using the blob-storage component's ExternalBlob.fromBytes() method to handle file conversion. Include file format validation for JPEG, PNG, WebP, file size limit enforcement (e.g., 10MB), visual feedback for drag states, and image preview. Wire the generated upload-placeholder.dim_400x300.png from frontend/public/assets/generated/upload-placeholder.dim_400x300.png as the placeholder visual. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useImageUpload.ts",
+          "operation": "create",
+          "description": "Create custom hook to manage image upload state, file validation logic, preview generation, and integration with backend uploadImage method. Handle file reading, validation errors, and upload progress tracking using ExternalBlob.withUploadProgress(). Verify the blob-storage component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement emotion transformation selector with five emotion options",
+      "acceptanceCriteria": [
+        "Display clear emotion options with representative icons or labels",
+        "Allow single emotion selection at a time",
+        "Visual feedback shows which emotion is currently selected",
+        "Selection persists during the transformation process"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/EmotionSelector.tsx",
+          "operation": "create",
+          "description": "Create EmotionSelector component displaying five emotion options (happy, sad, surprised, angry, neutral) using the generated emotion icon images from frontend/public/assets/generated/emotion-happy.dim_64x64.png, emotion-sad.dim_64x64.png, emotion-surprised.dim_64x64.png, emotion-angry.dim_64x64.png, and emotion-neutral.dim_64x64.png. Implement single-selection radio button behavior with visual active state styling using warm color palette from the design theme. Map selections to backend Emotion enum values."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement cartoon style selector with five style options including Ghibli-style",
+      "acceptanceCriteria": [
+        "Display all available cartoon styles with visual examples or descriptions",
+        "Allow single style selection at a time",
+        "Ghibli-style option is prominently featured",
+        "Visual feedback indicates the currently selected style"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/CartoonStyleSelector.tsx",
+          "operation": "create",
+          "description": "Create CartoonStyleSelector component displaying five cartoon style options (anime, comicBook, pixelArt, watercolor, popArt) mapped from backend CartoonStyle enum. Feature Ghibli-style (anime) prominently with the generated example image from frontend/public/assets/generated/ghibli-example.dim_800x600.png. Implement single-selection with clear visual feedback and descriptive labels for each style."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build processing workflow for emotion transformation with status communication to frontend",
+      "acceptanceCriteria": [
+        "Backend receives emotion selection parameter",
+        "Image processing applies selected emotion transformation",
+        "Transformed image maintains original resolution and quality",
+        "Processing status is communicated to frontend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useTransformation.ts",
+          "operation": "create",
+          "description": "Create custom hook to orchestrate the transformation workflow by calling backend requestTransformation with emotion and cartoonStyle parameters, polling or waiting for completion, and retrieving results via getSession. Handle transformation state (idle, processing, complete, error) and communicate status to UI components. Use ExternalBlob methods to handle transformed image data returned from backend."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Build processing workflow for cartoon style transformation applied to emotion-adjusted images",
+      "acceptanceCriteria": [
+        "Backend receives cartoon style selection parameter",
+        "Style transformation is applied to emotion-adjusted image",
+        "Each style produces visually distinct results",
+        "Ghibli-style transformation captures characteristic soft colors and hand-drawn aesthetics"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useTransformation.ts",
+          "operation": "modify",
+          "description": "Extend useTransformation hook to handle both emotion and cartoon style parameters in the requestTransformation call, ensuring the cartoon style selection is passed to backend and the resulting cartoonTransformed image is retrieved and exposed to UI components."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Display transformed images in side-by-side comparison view with three stages",
+      "acceptanceCriteria": [
+        "Three images displayed clearly: original, intermediate, and final",
+        "Responsive layout adapts to different screen sizes",
+        "Labels identify each stage of transformation",
+        "High-quality image rendering without compression artifacts"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/TransformationResults.tsx",
+          "operation": "create",
+          "description": "Create TransformationResults component that displays three images side-by-side: original (originalImage.blob), emotion-transformed (emotionTransformed.blob), and final cartoon-styled (cartoonTransformed.blob). Use ExternalBlob.getDirectURL() to render images with browser caching. Implement responsive grid layout that adapts to mobile, tablet, and desktop. Add clear labels for each transformation stage. Verify the blob-storage component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement download functionality for final transformed images",
+      "acceptanceCriteria": [
+        "Download button is clearly visible and accessible",
+        "Downloaded image maintains full quality and resolution",
+        "File is saved with descriptive naming convention",
+        "Download works across different browsers and devices"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/DownloadButton.tsx",
+          "operation": "create",
+          "description": "Create DownloadButton component that uses ExternalBlob.getBytes() to retrieve the full-quality image data and triggers a browser download with a descriptive filename (e.g., emotion-cartoon-transformed-{timestamp}.png). Ensure cross-browser compatibility using anchor element with download attribute. Verify the blob-storage component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/TransformationResults.tsx",
+          "operation": "modify",
+          "description": "Integrate DownloadButton component into TransformationResults to provide download functionality for the final transformed image, passing the cartoonTransformed blob as a prop."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add loading states and progress indicators for upload and processing",
+      "acceptanceCriteria": [
+        "Upload progress is visually indicated",
+        "Processing stages are communicated to users",
+        "Loading animations prevent perceived delays",
+        "Users understand the current step in the workflow"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/LoadingIndicator.tsx",
+          "operation": "create",
+          "description": "Create LoadingIndicator component with progress bar for upload (using ExternalBlob.withUploadProgress callback) and spinner/stage indicators for processing states. Display current step messages (uploading, processing emotion, applying style, complete) based on transformation state from useTransformation hook."
+        },
+        {
+          "path": "frontend/src/hooks/useImageUpload.ts",
+          "operation": "modify",
+          "description": "Add upload progress tracking state and integrate ExternalBlob.withUploadProgress() callback to update progress percentage, exposing it to consuming components for display in LoadingIndicator."
+        },
+        {
+          "path": "frontend/src/pages/TransformationPage.tsx",
+          "operation": "modify",
+          "description": "Integrate LoadingIndicator component to display upload and processing progress based on state from useImageUpload and useTransformation hooks. Show appropriate loading states during each workflow stage."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Design visually cohesive interface with creative artistic theme using warm colors and playful typography",
+      "acceptanceCriteria": [
+        "Color palette uses warm, inviting tones that avoid standard blue/purple combinations",
+        "Typography is playful yet readable, supporting the creative theme",
+        "Layout emphasizes the transformation journey from upload to final result",
+        "Visual style is consistently applied across all components and pages"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global styles with warm color palette (sunset oranges, warm yellows, coral pinks, soft peach tones) as CSS custom properties. Add playful but readable typography settings using creative font choices. Ensure consistent spacing and layout variables that support the transformation journey theme."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind configuration with custom warm color palette (sunset, coral, peach, amber tones), creative font families for playful typography, and custom spacing/border-radius settings that support the artistic transformation theme."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create Layout component that wraps the main application content with consistent header and background styling. Include the generated hero-background.dim_1920x1080.png from frontend/public/assets/generated/hero-background.dim_1920x1080.png as a background element with artistic paint strokes and transformation motifs in warm sunset tones. Establish the transformation journey flow with visual hierarchy."
+        },
+        {
+          "path": "frontend/src/pages/TransformationPage.tsx",
+          "operation": "create",
+          "description": "Create TransformationPage component that orchestrates the complete workflow: ImageUpload, EmotionSelector, CartoonStyleSelector, LoadingIndicator, TransformationResults, and DownloadButton. Use useTransformation and useImageUpload hooks to manage state and coordinate the transformation process. Wrap with Layout component for consistent theming."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import and render TransformationPage as the main route. Remove or replace existing placeholder content. Ensure Layout component wraps the application for consistent theme application."
+        }
+      ]
+    }
+  ]
+}

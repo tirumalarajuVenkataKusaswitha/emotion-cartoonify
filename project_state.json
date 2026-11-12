@@ -1,0 +1,108 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "A website that converts person images into different emotions and then transforms them into various cartoon styles including Ghibli-style",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Hero background with artistic paint strokes and transformation motifs in warm sunset tones (hero-background.dim_1920x1080.png)\n- Sample Ghibli-style transformation example showing before and after (ghibli-example.dim_800x600.png)\n- Emotion icon set: happy face illustration (emotion-happy.dim_64x64.png)\n- Emotion icon set: sad face illustration (emotion-sad.dim_64x64.png)\n- Emotion icon set: surprised face illustration (emotion-surprised.dim_64x64.png)\n- Emotion icon set: angry face illustration (emotion-angry.dim_64x64.png)\n- Emotion icon set: neutral face illustration (emotion-neutral.dim_64x64.png)\n- Upload area placeholder illustration with camera and image icons (upload-placeholder.dim_400x300.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-an-image-upload-interface-that-accepts-person-photos-in-common-formats-jpeg-png-webp-with-drag-and-drop-support-and-file-size-validation",
+      "title": "Create an image upload interface that accepts person photos in common formats (JPEG, PNG, WebP) with drag-and-drop support and file size validation",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-emotion-transformation-selector-allowing-users-to-choose-target-emotions-happy-sad-surprised-angry-neutral",
+      "title": "Implement emotion transformation selector allowing users to choose target emotions: happy, sad, surprised, angry, neutral",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-cartoon-style-selector-with-options-including-ghibli-style-classic-cartoon-anime-comic-book-and-watercolor-styles",
+      "title": "Implement cartoon style selector with options including: Ghibli-style, classic cartoon, anime, comic book, and watercolor styles",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-processing-workflow-that-applies-emotion-transformation-to-the-uploaded-image-based-on-user-selection",
+      "title": "Build processing workflow that applies emotion transformation to the uploaded image based on user selection",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-processing-workflow-that-applies-cartoon-style-transformation-to-the-emotion-adjusted-image-based-on-user-selection",
+      "title": "Build processing workflow that applies cartoon style transformation to the emotion-adjusted image based on user selection",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-transformed-images-with-side-by-side-comparison-view-showing-original-emotion-adjusted-and-final-cartoon-styled-versions",
+      "title": "Display transformed images with side-by-side comparison view showing original, emotion-adjusted, and final cartoon-styled versions",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-download-functionality-allowing-users-to-save-the-final-transformed-image-to-their-device",
+      "title": "Implement download functionality allowing users to save the final transformed image to their device",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-loading-states-and-progress-indicators-during-image-upload-and-transformation-processing",
+      "title": "Add loading states and progress indicators during image upload and transformation processing",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-visually-cohesive-interface-with-a-creative-artistic-theme-that-emphasizes-transformation-and-creativity-using-warm-inviting-colors-and-playful-typography-that-reflects-the-fun-artistic-nature-of-image-manipulation",
+      "title": "Design a visually cohesive interface with a creative artistic theme that emphasizes transformation and creativity, using warm, inviting colors and playful typography that reflects the fun, artistic nature of image manipulation",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Convert person images into different emotions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Transform images into various cartoon styles including Ghibli-style",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Create backend endpoint to store uploaded person images and track transformation requests with user sessions",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Emotion Cartoonify",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
